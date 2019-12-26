@@ -35,11 +35,6 @@ num_candidates = rawdata["candidate"].nunique()
 max_rank = rawdata["rank"].max()
 majority = math.floor(num_judges/2.0 + 1)
 
-if RANK_TOP_N == 0:
-    num_ranks = max_rank
-else:
-    num_ranks = RANK_TOP_N
-
 # output array; populated in order as results are computed
 final_rankings = []
 
@@ -48,7 +43,7 @@ workingcopy = rawdata.copy()
 next_rank = 1
 working_rank = 1
 
-while workingcopy.size > 0:
+while (workingcopy.size > 0) and ((next_rank <= RANK_TOP_N) or (RANK_TOP_N == 0)):
     print('working copy size ',workingcopy.size)
     print('Determining rank ',next_rank, ' looking at judge rankings ',working_rank,' or better')
     ranked_candidates = []
