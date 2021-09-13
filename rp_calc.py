@@ -5,6 +5,7 @@
 import pandas as pd;
 import numpy as np;
 import math;
+import sys;
 
 def find_majority_candidates(indata, therank, threshold):
 # takes in a working copy of the data, rank at which to check, and threshold for a majority
@@ -27,7 +28,7 @@ def tiebreaks(indata, fulldata):
 RANK_TOP_N = 0;
 
 # Read in CSV data
-rawdata = pd.read_csv('./test_data/2019_acbc_open.csv');
+rawdata = pd.read_csv(sys.stdin);
 
 
 num_judges = rawdata["judge"].nunique()
